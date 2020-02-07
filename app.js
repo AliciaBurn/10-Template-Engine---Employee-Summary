@@ -111,14 +111,13 @@ const generate = teamMember => {
     team.push(teamMember);
     inquirer.prompt(continueQuestion).then(function(answer){
         if(answer.continue === true) {
-            console.log("You are adding another employee. Please answer the following questions again!");
+            console.log("You are adding another team member.");
             generateTeam();
         }
         else {
-            console.log("Processing your team...");
+            console.log("Creating your team...");
             createHTML(team);
             const roster = generateHTML(strHTML);
-            console.log(roster);
             createRoster(roster);
         }
     }) 
@@ -146,12 +145,12 @@ const createHTML = team => {
 }
 
 async function createRoster(roster) {
-fs.writeFile("team.html", roster, err => {
+fs.writeFile("./output/team.html", roster, err => {
     if (err) {
         console.log(err);
     }
     else {
-        console.log("Your team has been generated!");
+        console.log("Your team is ready!");
     }
 })
 };
